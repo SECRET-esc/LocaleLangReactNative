@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, View, StyleSheet} from 'react-native';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import en from './src/en.json'
@@ -22,8 +22,18 @@ i18n.fallbacks = true;
 
 export default function App() {
   return (
+    <View style={styles.block}>
     <Text>
       {i18n.t('welcome')} {i18n.t('name')}
     </Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  block: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+})
