@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text } from 'react-native';
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
+import en from './src/en.json'
+import de from './src/de.json'
+import fr from './src/fr.json'
+
+// Set the key-value pairs for the different languages you want to support.
+i18n.translations = {
+  en,
+  de,
+  fr
+};
+
+// Set default language if doesn't exists current lang
+i18n.defaultLocale = 'fr'
+// Set the locale once at the beginning of your app.
+i18n.locale = Localization.locale;
+// When a value is missing from a language it'll fallback to another language with the key present.
+i18n.fallbacks = true;
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Text>
+      {i18n.t('welcome')} {i18n.t('name')}
+    </Text>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
